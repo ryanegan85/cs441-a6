@@ -26,6 +26,10 @@ public class InstructionsActivity extends AppCompatActivity {
             }
         });
 
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         mInstructionsHeader = findViewById(R.id.instructionsText);
         mInstructionsHeader.setText(Html.fromHtml("<h1>Welcome to Janken Tower!</h1>"));
 
@@ -37,7 +41,7 @@ public class InstructionsActivity extends AppCompatActivity {
                                                 +"<br>"
                                                 +"<p><b>2.</b> You gain time by defeating enemies "
                                                 +"on your way through the tower. Do this by tapping"
-                                                +" on them until their health reaches 0!</p>"
+                                                +" on them until their health reaches 0.</p>"
                                                 +"<br>"
                                                 +"<p><b>3.</b> Each enemy will have one of three "
                                                 +"types: Rock, paper, or scissors. Make sure to "

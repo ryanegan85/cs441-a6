@@ -14,6 +14,10 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         mBackButton = findViewById(R.id.button6);
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,15 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class HiScoresActivity extends AppCompatActivity {
     private Button mBackButton;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private HiScoreEntry hiScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiscores);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         mBackButton = findViewById(R.id.button5);
         mBackButton.setOnClickListener(new View.OnClickListener() {
@@ -26,9 +33,13 @@ public class HiScoresActivity extends AppCompatActivity {
             }
         });
 
+        hiScores = new HiScoreEntry();
+        hiScores.putNewHiScore("Ryan", "23000");
+        hiScores.putNewHiScore("Alex", "2");
+
         mRecyclerView = (RecyclerView) findViewById(R.id.myRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyAdapter(this);
+        mAdapter = new MyAdapter(this, hiScores);
         mRecyclerView.setAdapter(mAdapter);
     }
 

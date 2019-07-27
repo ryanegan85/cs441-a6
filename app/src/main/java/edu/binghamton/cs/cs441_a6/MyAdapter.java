@@ -11,37 +11,42 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<Integer> mData;
+    private HiScoreEntry mData;
     private LayoutInflater mInflater;
     //private ItemClickListener mClickListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
-        public ViewHolder(TextView v) {
+        public TextView scoreNumber;
+        public TextView scoreName;
+        public ViewHolder(View v) {
             super(v);
-            textView = v;
+            scoreNumber = v.findViewById(R.id.hiScore_score);
+            scoreName = v.findViewById(R.id.hiScore_name);
         }
     }
 
-    MyAdapter(Context context) {
+    MyAdapter(Context context, HiScoreEntry data) {
         this.mInflater = LayoutInflater.from(context);
+        mData = data;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        TextView view = (TextView) mInflater.inflate(R.layout.recyclerview_row, parent, false);
+        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String num = Integer.toString(mData.get(position));
-        holder.textView.setText(num);
+        String name = "Name: " + mData.getName(position);
+        String score = "Score: " + mData.getScore(position);
+        holder.scoreName.setText(name);
+        holder.scoreNumber.setText(score);
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.getSize();
     }
 }
